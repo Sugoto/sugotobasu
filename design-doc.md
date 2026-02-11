@@ -114,10 +114,14 @@ The goal is a site that feels handmade, confident, and visually memorable — th
         button.tsx
         card.tsx
         badge.tsx
+    pages/
+      Home.tsx
+      Blog.tsx
     sections/
       Hero.tsx
       About.tsx
       Projects.tsx
+      BlogCta.tsx
       Contact.tsx
 ```
 
@@ -134,22 +138,46 @@ The goal is a site that feels handmade, confident, and visually memorable — th
 
 ---
 
-## Landing Page Sections
+## Routing
+
+Client-side routing via `react-router` v7. Pages live in `src/pages/`, sections in `src/sections/`.
+
+| Route   | Page        | Description               |
+|---------|-------------|---------------------------|
+| `/`     | `Home.tsx`  | Landing page              |
+| `/blog` | `Blog.tsx`  | "What's on my mind" blog  |
+
+## Home Page Sections
 
 ### Hero
-Full-viewport section with mint background. Large name, tagline, availability badge, and two CTA buttons.
+Top half: mint background with social icon links (Mail, LinkedIn, GitHub), large name, tagline, and two CTA buttons. Bottom half: Gumroad-style bento strip of 4 pastel skill blocks.
 
 ### About
-Single card on base background with peach card fill. Short bio paragraph.
+Vertical timeline section with a center line and alternating left/right milestone cards on desktop (stacked on mobile). Each milestone includes `from-to` and company tags, role, and a short summary.
 
 ### Projects
 Three placeholder project cards in a responsive grid over a tinted sky background. Each card has a different pastel fill and tech-stack badges.
 
+### Blog CTA
+Butter background, "What's on my mind" heading with a link to `/blog`.
+
 ### Contact
-Lavender background, centered heading with email and GitHub CTA buttons.
+Lavender background, centered heading with email, LinkedIn, and GitHub CTA buttons with icons.
 
 ### Footer
-Thin top border, base background, copyright line.
+Thin top border, base background, copyright line. Shared across all pages.
+
+## Blog Page
+
+### Header
+Butter background with "Back Home" link and large "What's on my mind" title.
+
+### Article Grid
+An uneven multi-column bento grid (`3-column` on desktop, single column on mobile). Articles have varying spans to create visual rhythm:
+- Feature articles span 2 columns and/or 2 rows for prominence.
+- Regular articles occupy 1x1 cells.
+- Each article card has a pastel background, thick ink border, brutal shadow, and hover lift.
+- Content: date label, bold title (scaled by span size), and an excerpt.
 
 ---
 

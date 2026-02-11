@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { Mail, Linkedin, Github } from "lucide-react"
 
 function Contact() {
   return (
@@ -17,7 +18,25 @@ function Contact() {
             className="w-full bg-ink text-base px-8 py-5 text-base sm:w-auto sm:py-6 sm:text-lg"
             asChild
           >
-            <a href="mailto:hello@sugotobasu.com">Send an Email</a>
+            <a href="mailto:sugotobasu1@gmail.com">
+              <Mail className="size-5" />
+              Email
+            </a>
+          </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            className="w-full bg-sky text-ink px-8 py-5 text-base sm:w-auto sm:py-6 sm:text-lg"
+            asChild
+          >
+            <a
+              href="https://linkedin.com/in/sugotobasu"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Linkedin className="size-5" />
+              LinkedIn
+            </a>
           </Button>
           <Button
             variant="outline"
@@ -30,6 +49,7 @@ function Contact() {
               target="_blank"
               rel="noopener noreferrer"
             >
+              <Github className="size-5" />
               GitHub
             </a>
           </Button>
