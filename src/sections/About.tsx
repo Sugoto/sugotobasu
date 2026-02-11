@@ -1,33 +1,113 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
+
+const trajectory = [
+  {
+    period: "2025 - Present",
+    company: "Current Role",
+    role: "Full Stack AI Native Engineer",
+    summary:
+      "Building AI-native products with modern web stacks, automation-first workflows, and strong UX.",
+    color: "bg-butter",
+  },
+  {
+    period: "2023 - 2025",
+    company: "Company Gamma",
+    role: "Lead Engineer",
+    summary:
+      "Drove architecture decisions and built scalable, high-velocity engineering workflows.",
+    color: "bg-lavender",
+  },
+  {
+    period: "2021 - 2023",
+    company: "Company Beta",
+    role: "Senior Full Stack Engineer",
+    summary:
+      "Led critical platform initiatives, improved system reliability, and mentored engineers.",
+    color: "bg-sky",
+  },
+  {
+    period: "2019 - 2021",
+    company: "Company Alpha",
+    role: "Software Engineer",
+    summary:
+      "Shipped full-stack product features, API integrations, and internal tooling across web apps.",
+    color: "bg-peach",
+  },
+]
 
 function About() {
   return (
     <section className="bg-base px-4 py-16 sm:px-6 sm:py-20 md:py-24">
-      <div className="mx-auto max-w-4xl">
-        <h2 className="mb-8 text-3xl font-bold text-ink sm:mb-10 sm:text-4xl md:mb-12 md:text-5xl">
+      <div className="mx-auto max-w-6xl">
+        <h2 className="mb-4 text-3xl font-bold text-ink sm:text-4xl md:text-5xl">
           About Me
         </h2>
-        <Card className="bg-peach">
-          <CardHeader>
-            <CardTitle className="text-xl text-ink sm:text-2xl">
-              A little bit about what I do
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-base leading-relaxed text-ink/90 sm:text-lg">
-              I'm a developer who loves building clean, functional, and
-              delightful digital experiences. I work across the full stack,
-              with a soft spot for beautiful frontends and robust systems.
-              When I'm not coding, you'll find me exploring new technologies,
-              reading about design, or tinkering with side projects.
-            </p>
-          </CardContent>
-        </Card>
+        <p className="max-w-2xl text-base text-ink/80 sm:text-lg">
+          A quick look at my career trajectory and how my role evolved over time.
+        </p>
+
+        <div className="relative mt-10 sm:mt-12">
+          <div className="absolute left-4 top-0 h-full w-0.5 bg-ink md:left-1/2 md:-translate-x-1/2" />
+          <div className="space-y-6 sm:space-y-8">
+            {trajectory.map((item, index) => {
+              const alignLeft = index % 2 === 0
+              return (
+                <div
+                  key={`${item.period}-${item.company}`}
+                  className="relative pl-10 md:grid md:grid-cols-2 md:gap-10 md:pl-0"
+                >
+                  <div
+                    className={cn(
+                      "md:max-w-xl",
+                      alignLeft
+                        ? "md:col-start-1 md:justify-self-end md:pr-8"
+                        : "md:col-start-2 md:justify-self-start md:pl-8"
+                    )}
+                  >
+                    <Card className={cn(item.color, "w-full")}>
+                      <CardHeader
+                        className={cn(
+                          alignLeft ? "md:items-end md:text-right" : "md:items-start"
+                        )}
+                      >
+                        <div
+                          className={cn(
+                            "flex flex-wrap gap-2",
+                            alignLeft ? "md:justify-end" : "md:justify-start"
+                          )}
+                        >
+                          <Badge variant="outline" className="bg-base text-black">
+                            {item.period}
+                          </Badge>
+                          <Badge variant="outline" className="bg-base text-black">
+                            {item.company}
+                          </Badge>
+                        </div>
+                        <CardTitle className="text-xl text-black sm:text-2xl">
+                          {item.role}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p
+                          className={cn(
+                            "text-base leading-relaxed text-black/90",
+                            alignLeft ? "md:text-right" : "md:text-left"
+                          )}
+                        >
+                          {item.summary}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  <span className="absolute left-4 top-8 size-4 -translate-x-1/2 rounded-full border-2 border-ink bg-mint md:left-1/2" />
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </section>
   )
