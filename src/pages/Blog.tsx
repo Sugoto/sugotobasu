@@ -1,6 +1,7 @@
 import { Link } from "react-router"
 import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
 import {
   Card,
   CardContent,
@@ -81,6 +82,28 @@ const articles = [
   },
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.35,
+    },
+  },
+}
+
 function Blog() {
   return (
     <main>
@@ -107,28 +130,39 @@ function Blog() {
       </section>
 
       <section className="bg-base px-4 py-12 sm:px-6 sm:py-16 md:py-20">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 sm:gap-5 md:grid-cols-3 md:auto-rows-[minmax(180px,auto)]">
+        <motion.div
+          className="mx-auto grid max-w-6xl grid-cols-1 gap-4 sm:gap-5 md:grid-cols-3 md:auto-rows-[minmax(180px,auto)]"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {articles.map((article) => (
-            <Card
+            <motion.div
               key={article.title}
-              className={`${article.color} ${article.layout} cursor-pointer justify-between`}
+              variants={cardVariants}
+              className={article.layout}
             >
-              <CardHeader>
-                <CardDescription className="text-xs font-bold uppercase tracking-wider text-ink/60">
-                  {article.date}
-                </CardDescription>
-                <CardTitle className={`font-bold leading-tight text-ink ${article.titleSize}`}>
-                  {article.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm leading-relaxed text-ink/70 sm:text-[1rem]">
-                  {article.excerpt}
-                </p>
-              </CardContent>
-            </Card>
+              <Card
+                className={`${article.color} h-full cursor-pointer justify-between`}
+              >
+                <CardHeader>
+                  <CardDescription className="text-xs font-bold uppercase tracking-wider text-ink/60">
+                    {article.date}
+                  </CardDescription>
+                  <CardTitle className={`font-bold leading-tight text-ink ${article.titleSize}`}>
+                    {article.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm leading-relaxed text-ink/70 sm:text-[1rem]">
+                    {article.excerpt}
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
     </main>
   )

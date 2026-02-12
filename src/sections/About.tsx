@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
 
 const trajectory = [
   {
@@ -37,6 +38,28 @@ const trajectory = [
   },
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.14,
+      delayChildren: 0.08,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.35,
+    },
+  },
+}
+
 function About() {
   return (
     <section className="bg-base px-4 py-16 sm:px-6 sm:py-20 md:py-24">
@@ -50,13 +73,20 @@ function About() {
 
         <div className="relative mt-10 sm:mt-12">
           <div className="absolute left-4 top-0 h-full w-0.5 bg-ink md:left-1/2 md:-translate-x-1/2" />
-          <div className="space-y-6 sm:space-y-8">
+          <motion.div
+            className="space-y-6 sm:space-y-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
             {trajectory.map((item, index) => {
               const alignLeft = index % 2 === 0
               return (
-                <div
+                <motion.div
                   key={`${item.period}-${item.company}`}
                   className="relative pl-10 md:grid md:grid-cols-2 md:gap-10 md:pl-0"
+                  variants={itemVariants}
                 >
                   <div
                     className={cn(
@@ -103,10 +133,10 @@ function About() {
                   </div>
 
                   <span className="absolute left-4 top-8 size-4 -translate-x-1/2 rounded-full border-2 border-ink bg-mint md:left-1/2" />
-                </div>
+                </motion.div>
               )
             })}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
