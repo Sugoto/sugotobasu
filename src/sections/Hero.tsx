@@ -1,11 +1,16 @@
 import { Button } from "@/components/ui/button"
 import { Mail, Linkedin, Github } from "lucide-react"
+import { motion } from "framer-motion"
+import { Link } from "react-router"
 
 function Hero() {
+  const ctaBaseClass =
+    "w-full md:w-[220px] !text-black text-sm sm:text-base !shadow-brutal hover:!shadow-brutal-hover"
+
   return (
     <section className="border-b-2 border-ink">
       <div className="flex min-h-[50dvh] flex-col justify-center border-b-2 border-ink bg-mint p-8 sm:p-12 md:p-16 lg:min-h-[55dvh] lg:p-20 xl:p-24">
-        <div className="mb-6 flex gap-3 sm:mb-8">
+        <div className="mb-6 flex items-center gap-3 sm:mb-8">
           <a
             href="mailto:sugotobasu1@gmail.com"
             className="flex size-10 items-center justify-center border-2 border-ink bg-base text-ink shadow-brutal-sm transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal sm:size-12"
@@ -29,25 +34,45 @@ function Hero() {
             <Github className="size-5 sm:size-6" />
           </a>
         </div>
-        <h1 className="text-5xl font-bold leading-[0.95] tracking-tight text-ink sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
-          Sugoto Basu
+        <h1 className="leading-[0.95] tracking-tight text-ink">
+          <span className="block text-2xl font-semibold sm:text-3xl md:text-4xl">
+            Hi, I am
+          </span>
+          <span className="relative mt-2 inline-block text-5xl font-bold sm:mt-3 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
+            Sugoto Basu
+            <motion.svg
+              viewBox="0 0 420 56"
+              className="absolute -bottom-4 -left-2 h-6 w-[calc(100%+1rem)] text-ink sm:-bottom-5 sm:h-7"
+              fill="none"
+              preserveAspectRatio="none"
+            >
+              <motion.path
+                d="M6 36 C 84 58, 334 8, 414 34"
+                stroke="currentColor"
+                strokeWidth="12"
+                strokeLinecap="round"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 1, delay: 0.2 }}
+              />
+            </motion.svg>
+          </span>
         </h1>
-        <p className="mt-4 text-lg font-medium text-ink/80 sm:mt-6 sm:text-xl md:text-2xl lg:text-3xl">
-          Full Stack AI Native Engineer
-        </p>
-        <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4 md:mt-10">
+        <div className="mt-8 flex w-full max-w-sm flex-col gap-3 md:mt-10 md:w-auto md:max-w-none md:flex-row md:gap-4">
           <Button
+            variant="outline"
             size="lg"
-            className="w-full bg-lavender text-ink px-8 py-5 text-base sm:w-auto sm:py-6 sm:text-lg"
+            className={`${ctaBaseClass} bg-peach`}
           >
-            View Projects
+            Get in Touch
           </Button>
           <Button
             variant="outline"
             size="lg"
-            className="w-full bg-peach text-ink px-8 py-5 text-base !shadow-brutal hover:!shadow-brutal-hover sm:w-auto sm:py-6 sm:text-lg"
+            className={`${ctaBaseClass} bg-butter`}
+            asChild
           >
-            Get in Touch
+            <Link to="/blog">Read the Blog</Link>
           </Button>
         </div>
       </div>

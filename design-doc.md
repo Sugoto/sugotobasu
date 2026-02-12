@@ -82,6 +82,7 @@ The goal is a site that feels handmade, confident, and visually memorable — th
 | Runtime / PM       | Bun                                          |
 | Build tool         | Vite 7                                       |
 | UI library         | React 19 + React Compiler 1.0               |
+| Motion             | Framer Motion (staggered card animations)    |
 | Optimizer          | Million.js 3.x (auto mode)                   |
 | Language           | TypeScript (strict)                          |
 | CSS framework      | Tailwind CSS v4 (CSS-first, no config file)  |
@@ -150,13 +151,13 @@ Client-side routing via `react-router` v7. Pages live in `src/pages/`, sections 
 ## Home Page Sections
 
 ### Hero
-Top half: mint background with social icon links (Mail, LinkedIn, GitHub), large name, tagline, and two CTA buttons. Bottom half: Gumroad-style bento strip of 4 pastel skill blocks.
+Top half: mint background with social icon links (Mail, LinkedIn, GitHub), top "Read the Blog" action, two-line heading ("Hi, I am" and "Sugoto Basu"), animated hand-drawn curved underline under the name, tagline, and two CTA buttons. Bottom half: Gumroad-style bento strip of 4 pastel skill blocks.
 
 ### About
-Vertical timeline section with a center line and alternating left/right milestone cards on desktop (stacked on mobile). Each milestone includes `from-to` and company tags, role, and a short summary.
+Vertical timeline section with a center line and alternating left/right milestone cards on desktop (stacked on mobile). Each milestone includes `from-to` and company tags, role, and a short summary, with staggered reveal animation.
 
 ### Projects
-Three placeholder project cards in a responsive grid over a tinted sky background. Each card has a different pastel fill and tech-stack badges.
+Three placeholder project cards in a responsive grid over a tinted sky background. Each card has a different pastel fill, fixed card height for consistent layout, tech-stack badges, and staggered reveal animation.
 
 ### Blog CTA
 Butter background, "What's on my mind" heading with a link to `/blog`.
